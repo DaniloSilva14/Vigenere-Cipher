@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css">
+  <title>Vinegere Cipher</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <h1 class="title" id="title">Vinegere Cipher</h1>
+
+      <div class="content">
+        <div class="selects pd-30">
+          <label for="">Ação</label>
+          <select name="" id="selectFrom" onchange="chooseSelectTo()">
+            <option value="encode" selected>Encode</option>
+            <option value="decode">Decode</option>
+          </select>
+        </div>
+
+        <div class="input-group pd-input">
+          <input type="text" class="form-control" id="input" placeholder="Entrada">
+        </div>
+
+        <div class="input-group pd-input">
+          <input type="text" class="form-control" id="key" placeholder="Chave">
+        </div>
+
+        <button onclick="calculate()" class="btn btn-primary"> Converter </button>
+
+        <div class="input-group pd-input">
+          <input type="text" class="form-control" id="output" placeholder="Saida" readonly>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
