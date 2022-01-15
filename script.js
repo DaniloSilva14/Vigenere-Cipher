@@ -11,7 +11,14 @@ function calculate() {
 
 function encode() {
   var input = document.getElementById('input').value;
-  document.getElementById('output').value = input;
+  var key = document.getElementById('key').value;
+
+  console.log('input', input);
+  console.log('key', key);
+
+  var output = input + key
+  console.log('output', output);
+  document.getElementById('output').value = output;
 }
 
 function decode() {
