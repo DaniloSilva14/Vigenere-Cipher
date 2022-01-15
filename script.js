@@ -11,12 +11,10 @@ function calculate() {
 
 function encode() {
   var input = document.getElementById('input').value;
-  alert('encode')
   document.getElementById('output').value = input;
 }
 
 function decode() {
   var input = document.getElementById('input').value;
-  alert('decode')
   document.getElementById('output').value = input;
 }
