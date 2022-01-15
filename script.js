@@ -5,26 +5,17 @@ function chooseSelectTo() {
 
 function calculate() {
   var select = document.getElementById('selectFrom').value;
-
-  select == 'encode' ? encode() : decode();
-}
-
-function encode() {
   var input = document.getElementById('input').value;
   var key = document.getElementById('key').value;
 
   var useKey = generateKey(input, key)
-  var output = cipherEncryptText(input.toUpperCase(), useKey)
+  let output = '';
 
-  document.getElementById('output').value = output;
-}
-
-function decode() {
-  var input = document.getElementById('input').value;
-  var key = document.getElementById('key').value;
-
-  var useKey = generateKey(input, key)
-  var output = cipherDecryptText(input.toUpperCase(), useKey)
+  if(select == 'encode') {
+    output = cipherEncryptText(input, useKey)
+  } else {
+    output = cipherDecryptText(input, useKey)
+  }
 
   document.getElementById('output').value = output;
 }
@@ -36,7 +27,7 @@ function generateKey(str, key) {
   key = key.split("");
 
   if (str.length == key.length)
-    return key.join("");
+    return key.join("").toUpperCase();
   else {
     let temp = key.length;
     for (let i = 0; i < (str.length - temp); i++) {
@@ -52,11 +43,13 @@ function cipherEncryptText(str, key) {
   let cipher_text = "";
 
   for (let i = 0; i < str.length; i++) {
-    if(str[i] == " ") {
+    if (str[i] == " ") {
       cipher_text += " ";
     } else {
-      let x = (str[i].charCodeAt(0) + key[i].charCodeAt(0)) % 26;
-      x += 'A'.charCodeAt(0);
+      let x = (str[i].toUpperCase().charCodeAt(0) + key[i].charCodeAt(0)) % 26;
+
+      x = caseSensitive(x, str[i])
+
       cipher_text += String.fromCharCode(x);
     }
   }
@@ -69,13 +62,30 @@ function cipherDecryptText(str, key) {
   let orig_text = "";
 
   for (let i = 0; i < str.length; i++) {
-    if(str[i] == " ") {
+    if (str[i] == " ") {
       orig_text += " ";
     } else {
-      let x = (str[i].charCodeAt(0) - key[i].charCodeAt(0) + 26) % 26;
-      x += 'A'.charCodeAt(0);
+      let x = (str[i].toUpperCase().charCodeAt(0) - key[i].charCodeAt(0) + 26) % 26;
+    
+      x = caseSensitive(x, str[i])
+
       orig_text += String.fromCharCode(x);
     }
   }
+  
   return orig_text;
+}
+
+// metodos
+const isUpperCase = (string) => /^[A-Z]*$/.test(string)
+const isLowerCase = (string) => /^[a-z]*$/.test(string)
+const isNumeric = (string) => /^[1-9]*$/.test(string)
+
+function caseSensitive(str, caracter) {
+  if (isUpperCase(caracter)) {
+    str += 'A'.charCodeAt(0)
+  } else {
+    str += 'a'.charCodeAt(0)
+  }
+  return str;
 }
