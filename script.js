@@ -11,7 +11,7 @@ function calculate() {
   var useKey = generateKey(input, key)
   let output = '';
 
-  if(select == 'encode') {
+  if (select == 'encode') {
     output = cipherEncryptText(input, useKey)
   } else {
     output = cipherDecryptText(input, useKey)
@@ -66,13 +66,13 @@ function cipherDecryptText(str, key) {
       orig_text += " ";
     } else {
       let x = (str[i].toUpperCase().charCodeAt(0) - key[i].charCodeAt(0) + 26) % 26;
-    
+
       x = caseSensitive(x, str[i])
 
       orig_text += String.fromCharCode(x);
     }
   }
-  
+
   return orig_text;
 }
 
